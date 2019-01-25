@@ -1,0 +1,35 @@
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+
+#公共配置与profiles选择无关
+mybatis:
+  typeAliasesPackage: com.readandwrite.demo.entity
+  mapperLocations: classpath:mapper/*.xml
+
+
+---
+
+#开发配置
+spring:
+  profiles: dev
+  datasource:
+    master:
+      jdbc-url: jdbc:mysql://172.16.3.179:3306/test
+      username: root
+      password: yang156122
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #driver-class-name: com.mysql.jdbc.Driver
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+
+    slave1:
+      jdbc-url: jdbc:mysql://172.16.3.180:3306/test
+      username: root   # 只读账户
+      password: yang156122
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #driver-class-name: com.mysql.jdbc.Driver
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+
